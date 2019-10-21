@@ -1,7 +1,9 @@
 package ru.itpark;
 
 import ru.itpark.model.HardDriveProduct;
+import ru.itpark.model.JeansProduct;
 import ru.itpark.model.SmartPhoneProduct;
+import ru.itpark.model.SpeakerProduct;
 import ru.itpark.service.StoreService;
 
 public class Main {
@@ -18,9 +20,19 @@ public class Main {
                         "идеально подойдет для игр.", 555_000, 5, "Xiaomi", "Черный",
                 5, 137, 2));
 
+        service.add(new JeansProduct(0, "Джинсы U.S. Polo Assn., р. 31", "Мужские джинсы от " +
+                "известного бренда U.S. Polo Assn. Джинсы выполнены из качественного материала и долго сохранят " +
+                "привлекательный внешний вид.", 272_000, -1, "голубой", 31));
 
-        System.out.println(service.getSortedBy());
+        service.add(new SpeakerProduct(0, "колонки Trust Polo Compact","Trust Polo Compact " +
+                "представляют собой мощные колонки, которые позволят насладиться отличным звучанием музыки.",
+                87_000, -1, 8));
+
+        System.out.println(service.getAllSortedBy());
         System.out.println("________________");
         System.out.println(StoreService.sortItems(service.getByCategory("Смартфоны"), 1, 10));
+        System.out.println("________________");
+        System.out.println(StoreService.sortItems(service.getByName("Polo"), 1, 10));
+
     }
 }

@@ -78,14 +78,14 @@ public class StoreService {
         return results;
     }
 
-    public List<Product> getSortedBy(Comparator<Product> comparator) {
+    public List<Product> getAllSortedBy(Comparator<Product> comparator) {
         List<Product> result = new LinkedList<>(repository.getAll());
         result.sort(comparator);
         return result;
     }
 
-    public List<Product> getSortedBy() {
-        return getSortedBy((o1, o2) -> o1.getPriceKop() - o2.getPriceKop());
+    public List<Product> getAllSortedBy() {
+        return getAllSortedBy((o1, o2) -> o1.getPriceKop() - o2.getPriceKop());
     }
 
     public List<Product> getCategorySorted(String category) {
