@@ -20,5 +20,7 @@ public class Main {
 
 
         System.out.println(service.getSortedBy());
+        System.out.println("________________");
+        System.out.println(StoreService.sortItems(service.getByCategory("Смартфоны"), 1, 10));
     }
 }

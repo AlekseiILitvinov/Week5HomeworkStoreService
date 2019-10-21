@@ -8,24 +8,33 @@ import java.util.*;
 public class StoreService {
     private ProductRepository repository = new ProductRepository(new ArrayList<Product>());
 
+    private static List<Product> paginate(List<Product> items, int page, int itemsPerPage){
+        int maxIndex = page * itemsPerPage;
+        int minIndex = maxIndex - itemsPerPage;
+        if (maxIndex > items.size()) {
+            maxIndex = items.size();
+        }
+        return items.subList(minIndex, maxIndex);
+    }
+
     public static List<Product> sortItems(List<Product> items, int page, int itemsPerPage) {
         items.sort((o1, o2) -> o1.getPriceKop() - o2.getPriceKop());
-        return items.subList(page * (itemsPerPage - 1), page * itemsPerPage);
+        return paginate(items, page, itemsPerPage);
     }
 
     public static List<Product> sortItemsByPriceDesc(List<Product> items, int page, int itemsPerPage) {
         items.sort((o1, o2) -> o2.getPriceKop() - o1.getPriceKop());
-        return items.subList(page * (itemsPerPage - 1), page * itemsPerPage);
+        return paginate(items, page, itemsPerPage);
     }
 
     public static List<Product> sortItemsByRating(List<Product> items, int page, int itemsPerPage) {
         items.sort((o1, o2) -> o1.getRating() - o2.getRating());
-        return items.subList(page * (itemsPerPage - 1), page * itemsPerPage);
+        return paginate(items, page, itemsPerPage);
     }
 
     public static List<Product> sortItemsByName(List<Product> items, int page, int itemsPerPage) {
         items.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
-        return items.subList(page * (itemsPerPage - 1), page * itemsPerPage);
+        return paginate(items, page, itemsPerPage);
     }
 
     public void add(Product item) {
