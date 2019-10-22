@@ -14,6 +14,9 @@ public class StoreService {
         if (maxIndex > items.size()) {
             maxIndex = items.size();
         }
+        if (minIndex > maxIndex){
+            return new LinkedList<Product>();
+        }
         return items.subList(minIndex, maxIndex);
     }
 

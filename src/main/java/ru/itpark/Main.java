@@ -33,6 +33,7 @@ public class Main {
         System.out.println(StoreService.sortItems(service.getByCategory("Смартфоны"), 1, 10));
         System.out.println("________________");
         System.out.println(StoreService.sortItems(service.getByName("Polo"), 1, 10));
+        System.out.println(StoreService.sortItems(service.getByName("Polo"), 2, 10));
 
     }
 }
