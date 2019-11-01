@@ -68,7 +68,7 @@ public class StoreService {
         repository.saveBatch(items);
     }
 
-    public void delete(long id) throws IllegalArgumentException{
+    public void deleteItem(long id) throws IllegalArgumentException{
         if (id <= 0) {
             throw new IllegalArgumentException("id must be above zero!");
         }
@@ -81,25 +81,19 @@ public class StoreService {
         return results;
     }
 
-    public List<Product> getByCategory(String category) {
+    public List<Product> getCategory(String category) {
         List<Product> results = repository.searchByCategory(category);
         results.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         return results;
     }
 
-    public List<Product> getAllSortedBy(Comparator<Product> comparator) {
+    public List<Product> getAllSorted(Comparator<Product> comparator) {
         List<Product> result = new LinkedList<>(repository.getAll());
         result.sort(comparator);
         return result;
     }
 
-    public List<Product> getAllSortedBy() {
-        return getAllSortedBy((o1, o2) -> o1.getPriceKop() - o2.getPriceKop());
-    }
-
-    public List<Product> getCategorySorted(String category) {
-        List<Product> result = new LinkedList<>(repository.searchByCategory(category));
-        result.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
-        return result;
+    public List<Product> getAllSorted() {
+        return getAllSorted((o1, o2) -> o1.getPriceKop() - o2.getPriceKop());
     }
 }

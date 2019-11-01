@@ -35,9 +35,9 @@ public class Main {
                 new JeansProduct(0, "Jeans4","desc4", 84_000, 1, "red", 52),
                 new JeansProduct(0, "Jeans5","desc5", 83_000, 5, "blue", 16));
 
-        System.out.println(service.getAllSortedBy());
+        System.out.println(service.getAllSorted());
         System.out.println("________________");
-        System.out.println(StoreService.sortItems(service.getByCategory("Смартфоны"), 1, 10));
+        System.out.println(StoreService.sortItems(service.getCategory("Смартфоны"), 1, 10));
         System.out.println("________________");
         System.out.println(StoreService.sortItems(service.getByName("Polo"), 1, 10));
         System.out.println(StoreService.sortItems(service.getByName("Polo"), 2, 10));
