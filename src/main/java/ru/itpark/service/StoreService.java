@@ -40,20 +40,28 @@ public class StoreService {
         return paginate(items, page, itemsPerPage);
     }
 
-    public void add(Product item) {
-        if (item.getId() != 0) {
-            throw new IllegalArgumentException("id must be zero!");
+    public void add(Product... items) {
+        for (Product item : items) {
+            if (item.getId() != 0) {
+                throw new IllegalArgumentException("id must be zero!");
+            }
+            if (item.getPriceKop() <= 0) {
+                throw new IllegalArgumentException("price must be greater than zero");
+            }
         }
-        if (item.getPriceKop() <= 0) {
-            throw new IllegalArgumentException("price must be greater than zero");
-        }
-        repository.saveItem(item);
+        repository.saveItems(items);
     }
 
     public void addBatch(Collection<Product> items) {
         for (Product item : items) {
-            add(item);
+            if (item.getId() != 0){
+                throw new IllegalArgumentException("id must be zero!");
+            }
+            if (item.getPriceKop() <= 0) {
+                throw new IllegalArgumentException("price must be greater than zero");
+            }
         }
+        repository.saveBatch(items);
     }
 
     public void delete(long id) {

@@ -28,12 +28,21 @@ public class Main {
                 "представляют собой мощные колонки, которые позволят насладиться отличным звучанием музыки.",
                 87_000, -1, 8));
 
+        service.add(
+                new JeansProduct(0, "Jeans1","desc1", 87_000, 4, "blue", 33),
+                new JeansProduct(0, "Jeans2","desc2", 86_000, 3, "black", 31),
+                new JeansProduct(0, "Jeans3","desc3", 85_000, 2, "blue", 42),
+                new JeansProduct(0, "Jeans4","desc4", 84_000, 1, "red", 52),
+                new JeansProduct(0, "Jeans5","desc5", 83_000, 5, "blue", 16));
+
         System.out.println(service.getAllSortedBy());
         System.out.println("________________");
         System.out.println(StoreService.sortItems(service.getByCategory("Смартфоны"), 1, 10));
         System.out.println("________________");
         System.out.println(StoreService.sortItems(service.getByName("Polo"), 1, 10));
         System.out.println(StoreService.sortItems(service.getByName("Polo"), 2, 10));
+        System.out.println("________________");
+        System.out.println(StoreService.sortItems(service.getByName("Jeans"), 1, 10));
 
     }
 }

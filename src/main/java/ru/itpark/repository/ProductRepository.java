@@ -50,4 +50,11 @@ public class ProductRepository {
     }
 
 
+    public void saveBatch(Collection<Product> items) {
+        this.items.addAll(items);
+    }
+
+    public void saveItems(Product[] items) {
+        Collections.addAll(this.items, items);
+    }
 }
