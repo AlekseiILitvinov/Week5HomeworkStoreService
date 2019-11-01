@@ -7,6 +7,11 @@ import java.util.*;
 
 public class StoreService {
     private ProductRepository repository;
+    private static Comparator<Product> defaultComparator = new Comparator<Product>(){
+        public int compare(Product o1, Product o2){
+            return o1.getName().compareToIgnoreCase(o2.getName());
+        }
+    };
 
     public StoreService(ProductRepository repository) {
         this.repository = repository;
@@ -40,7 +45,7 @@ public class StoreService {
     }
 
     public static List<Product> sortItemsByName(List<Product> items, int page, int itemsPerPage) {
-        items.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        items.sort(defaultComparator);
         return paginate(items, page, itemsPerPage);
     }
 
@@ -77,13 +82,13 @@ public class StoreService {
 
     public List<Product> getByName(String name) {
         List<Product> results = repository.searchByName(name);
-        results.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        results.sort(defaultComparator);
         return results;
     }
 
     public List<Product> getCategory(String category) {
         List<Product> results = repository.searchByCategory(category);
-        results.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        results.sort(defaultComparator);
         return results;
     }
 
