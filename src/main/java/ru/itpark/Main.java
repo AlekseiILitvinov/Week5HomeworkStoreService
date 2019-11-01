@@ -7,7 +7,7 @@ import ru.itpark.service.StoreService;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         StoreService service = new StoreService(new ProductRepository(new ArrayList<Product>()));
 
         service.add(new HardDriveProduct(0, "жесткий диск HDD 1ТБ, Western Digital Blue, WD10EZEX",

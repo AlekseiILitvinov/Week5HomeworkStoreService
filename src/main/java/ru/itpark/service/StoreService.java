@@ -44,7 +44,7 @@ public class StoreService {
         return paginate(items, page, itemsPerPage);
     }
 
-    public void add(Product... items) {
+    public void add(Product... items) throws IllegalArgumentException{
         for (Product item : items) {
             if (item.getId() != 0) {
                 throw new IllegalArgumentException("id must be zero!");
@@ -56,7 +56,7 @@ public class StoreService {
         repository.saveItems(items);
     }
 
-    public void addBatch(Collection<Product> items) {
+    public void addBatch(Collection<Product> items) throws IllegalArgumentException{
         for (Product item : items) {
             if (item.getId() != 0){
                 throw new IllegalArgumentException("id must be zero!");
@@ -68,17 +68,11 @@ public class StoreService {
         repository.saveBatch(items);
     }
 
-    public void delete(long id) {
+    public void delete(long id) throws IllegalArgumentException{
         if (id <= 0) {
             throw new IllegalArgumentException("id must be above zero!");
         }
-        try {
-            repository.removeItem(id);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        } catch (NullPointerException e2) {
-            e2.printStackTrace();
-        }
+        repository.removeItem(id);
     }
 
     public List<Product> getByName(String name) {

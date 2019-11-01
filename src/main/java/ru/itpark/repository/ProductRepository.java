@@ -19,7 +19,7 @@ public class ProductRepository {
         }
     }
 
-    public void removeItem(long id) {
+    public void removeItem(long id) throws IllegalArgumentException{
         if (!items.removeIf(o -> id == o.getId())) {
             throw new IllegalArgumentException("The ID didn't match any item");
         }
