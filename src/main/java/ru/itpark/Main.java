@@ -1,14 +1,14 @@
 package ru.itpark;
 
-import ru.itpark.model.HardDriveProduct;
-import ru.itpark.model.JeansProduct;
-import ru.itpark.model.SmartPhoneProduct;
-import ru.itpark.model.SpeakerProduct;
+import ru.itpark.model.*;
+import ru.itpark.repository.ProductRepository;
 import ru.itpark.service.StoreService;
+
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        StoreService service = new StoreService();
+        StoreService service = new StoreService(new ProductRepository(new ArrayList<Product>()));
 
         service.add(new HardDriveProduct(0, "жесткий диск HDD 1ТБ, Western Digital Blue, WD10EZEX",
                 "Устройство хранения информации.", 287_000, 4, "Western Digital",

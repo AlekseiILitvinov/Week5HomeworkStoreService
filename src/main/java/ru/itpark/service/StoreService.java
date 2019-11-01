@@ -6,7 +6,11 @@ import ru.itpark.repository.ProductRepository;
 import java.util.*;
 
 public class StoreService {
-    private ProductRepository repository = new ProductRepository(new ArrayList<Product>());
+    private ProductRepository repository;
+
+    public StoreService(ProductRepository repository) {
+        this.repository = repository;
+    }
 
     private static List<Product> paginate(List<Product> items, int page, int itemsPerPage){
         int maxIndex = page * itemsPerPage;
